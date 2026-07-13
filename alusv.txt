@@ -1,0 +1,54 @@
+RTL CODE:-
+`timescale 1ns / 1ps
+module ALU(input logic [3:0]a,b,s,output logic [7:0]r);
+always_comb
+begin
+case(s)
+4'b0000:r=a+b;
+4'b0001:r=a-b;
+4'b0010:r=a*b;
+4'b0011:r=a/b;
+4'b0100:r=a+1;
+4'b0101:r=a-1;
+4'b0110:r=a&b;
+4'b0111:r=a|b;
+4'b1000:r=~a;
+4'b1001:r=a^b;
+4'b1010:r=~(a&b);
+4'b1101:r=~(a|b);
+4'b1100:r=~(a^b);
+default:r=8'bzzzzzzzz;
+endcase
+end
+endmodule
+
+Test bench code:-
+`timescale 1ns / 1ps
+module tb_ALU;
+logic [3:0]a,b,s;
+logic [7:0]r;
+ALU dut(.a(a),.b(b),.s(s),.r(r));
+initial begin
+a=4'b0101;
+b=4'b1001;
+s=4'b0000;
+#10
+s=4'b0000;#5
+s=4'b0001;#5
+s=4'b0010;#5
+s=4'b0011;#5
+s=4'b0100;#5
+s=4'b0101;#5
+s=4'b0110;#5
+s=4'b0111;#5
+s=4'b1000;#5
+s=4'b1001;#5
+s=4'b1010;#5
+s=4'b1011;#5
+s=4'b1100;#5
+s=4'b1101;#5
+s=4'b1110;#5
+s=4'b1111;#5
+$finish;
+ end  
+endmodule
