@@ -1,0 +1,89 @@
+RTL CODE:-
+ANDGATE:
+`timescale 1ns / 1ps
+module and_gate(input logic a,b,output logic y);
+    always_comb
+    begin
+    y=a&b;
+    end
+endmodule
+OR GATE:
+`timescale 1ns / 1ps
+module or_gate(input logic a,b,output logic y);
+    always_comb
+    begin
+    y=a|b;
+    end
+endmodule
+NOT GATE:
+`timescale 1ns / 1ps
+module not_gate(input logic a,output logic y);
+    always_comb
+    begin
+    y=~a;
+    end
+endmodule
+
+Test bench code:-
+AND GATE:
+`timescale 1ns / 1ps
+module tb_and_gate;
+    logic a,b;
+    logic y;
+    and_gate uut(.a(a),.b(b),.y(y));
+    initial begin
+    a=0;b=0;#10;
+    a=0;b=1;#10;
+    a=1;b=0;#10;
+    a=1;b=1;#10;
+    a=0;b=1'bx;#10;
+    a=1'bx;b=0;#10;
+    a=1;b=1'bx;#10;
+    a=1'bx;b=1;#10;
+    a=1'bx;b=1'bx;#10;
+    a=0;b=1'bz;#10;
+    a=1'bz;b=0;#10;
+    a=1;b=1'bz;#10;
+    a=1'bz;b=1;#10;
+    a=1'bz;b=1'bz;#10;
+    $finish;
+    end        
+endmodule
+OR GATE:
+`timescale 1ns / 1ps
+module tb_or_gate;
+    logic a,b;
+    logic y;
+    or_gate uut(.a(a),.b(b),.y(y));
+    initial begin
+    a=0;b=0;#10;
+    a=0;b=1;#10;
+    a=1;b=0;#10;
+    a=1;b=1;#10;
+    a=0;b=1'bx;#10;
+    a=1'bx;b=0;#10;
+    a=1;b=1'bx;#10;
+    a=1'bx;b=1;#10;
+    a=1'bx;b=1'bx;#10;
+    a=0;b=1'bz;#10;
+    a=1'bz;b=0;#10;
+    a=1;b=1'bz;#10;
+    a=1'bz;b=1;#10;
+    a=1'bz;b=1'bz;#10;
+    $finish;
+    end        
+endmodule
+NOT GATE:
+`timescale 1ns / 1ps
+module tb_not_gate;
+    logic a;
+    logic y;
+    not_gate uut(.a(a),.y(y));
+    initial begin
+    a=0;#10;
+    a=1;#10;
+    a=1'bx;#10;
+    a=1'bz;#10;
+    $finish;
+    end        
+endmodule
