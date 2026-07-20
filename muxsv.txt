@@ -1,0 +1,33 @@
+RTL CODE:-
+`timescale 1ns / 1ps
+module mux_16X1(input logic [15:0]a,input logic [3:0]s,output logic y);
+integer i;
+    always_comb
+    begin
+    for(i=0;i<=15;i=i+1)
+    begin
+    if(s==i)
+    y=a[i];
+    end
+    end
+endmodule
+
+Test bench code:-
+`timescale 1ns / 1ps
+module tb_mux_16X1;
+    logic [15:0]a;
+    logic [3:0]s;
+    logic y;
+    integer i;
+  mux_16X1 Dut(.a(a),.s(s),.y(y));
+  initial begin
+  $monitor("time=%b,a=%b,s=%b,y=%b",$time,a,s,y); 
+a=16'b0101110101011001;
+for(i=0;i<16;i++)
+begin
+s=i;
+#10;
+end
+$finish;
+end
+endmodule
